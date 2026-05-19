@@ -334,19 +334,44 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 
-  // ==================== ЯНДЕКС МЕТРИКА ====================
-  const ymBtn = document.getElementById('showAppointmentBtn');
-  if (ymBtn) {
-    ymBtn.addEventListener('click', () => {
-      if (typeof ym === 'function') ym(109122763, 'reachGoal', 'click_online_btn');
+// ========== ЯНДЕКС.МЕТРИКА — ОТСЛЕЖИВАНИЕ ЦЕЛЕЙ ==========
+
+// Цель 1: клик по кнопке «Записаться онлайн»
+const onlineBtn = document.getElementById('showAppointmentBtn');
+if (onlineBtn) {
+    onlineBtn.addEventListener('click', function() {
+        if (typeof ym === 'function') {
+            ym(109309351, 'reachGoal', 'click_online_btn');
+            console.log('Яндекс.Метрика: цель "click_online_btn" достигнута');
+        }
     });
-  }
-  const ymForm = document.getElementById('onlineAppointmentForm');
-  if (ymForm) {
-    ymForm.addEventListener('submit', () => {
-      if (typeof ym === 'function') ym(109122763, 'reachGoal', 'form_submit');
+}
+
+// Цель 2: отправка формы
+const appointmentForm = document.getElementById('onlineAppointmentForm');
+if (appointmentForm) {
+    appointmentForm.addEventListener('submit', function() {
+        if (typeof ym === 'function') {
+            ym(109309351, 'reachGoal', 'form_submit');
+            console.log('Яндекс.Метрика: цель "form_submit" достигнута');
+        }
     });
-  }
+}
+
+// Цель 3: просмотр блока отзывов (прокрутка)
+const reviewSection = document.querySelector('.stories-slider-section');
+if (reviewSection) {
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            if (typeof ym === 'function') {
+                ym(109309351, 'reachGoal', 'scroll_to_reviews');
+                console.log('Яндекс.Метрика: цель "scroll_to_reviews" достигнута');
+            }
+            observer.disconnect();
+        }
+    });
+    observer.observe(reviewSection);
+}
 
   // ==================== ЗАПУСК ====================
   renderServices();
