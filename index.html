@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Лапки помощи | Ветеринарная клиника в Санкт-Петербурге</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Swiper JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Яндекс.Метрика -->
+  <script>
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+    ym(109122763, 'init', {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});
+  </script>
+</head>
+<body>
+
+<div class="top-header">
+  <div class="container header-inner">
+    <div class="logo-area">
+      <img class="logo-img" src="images/logo.jpg" alt="Логотип Лапки помощи">
+      <div class="logo-text">
+        <h1>ЛАПКИ ПОМОЩИ</h1>
+        <p>ветеринарная клиника</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <a href="tel:+78127778899" class="phone-link"><i class="fas fa-phone-alt"></i> +7 (812) 777-88-99</a>
+      <button class="cabinet-btn" id="openCabinetModal"><i class="fas fa-user-circle"></i> Личный кабинет</button>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+  <!-- Блок онлайн записи -->
+  <div class="appointment-hero">
+    <div class="appointment-left">
+      <h2>🐕 Запишитесь онлайн за 2 минуты</h2>
+      <p>Следите за здоровьем питомцев и записывайтесь на прием в ветклинику «Лапки помощи»!</p>
+      <button class="btn-online" id="showAppointmentBtn">Записаться онлайн ➤</button>
+    </div>
+    <div class="appointment-right">
+      <img class="pet-side-img" src="images/1.jpg" alt="Наши пациенты">
+    </div>
+  </div>
+  
+  <!-- Форма записи -->
+  <div id="appointmentFormBlock" class="appointment-form-card">
+    <h3 style="color:var(--purple); margin-bottom:20px;">📝 Запись на прием</h3>
+    <form id="onlineAppointmentForm">
+      <div class="form-row"><label>ФИО владельца *</label><input type="text" placeholder="Иванова Анна Петровна" required id="app_fio"></div>
+      <div class="form-row"><label>Телефон *</label><input type="tel" placeholder="+7 (XXX) XXX-XX-XX" required id="app_phone"></div>
+      <div class="form-row"><label>Telegram / ВК (никнейм или ссылка)</label><input type="text" placeholder="@nickname или ссылка" id="app_social"></div>
+      <div class="form-row"><label>Вид животного *</label><input type="text" placeholder="Кошка, собака, грызун" required id="app_pet"></div>
+      <div class="form-row"><label>Причина обращения *</label><textarea rows="2" placeholder="Симптомы, жалобы" required id="app_reason"></textarea></div>
+      <div class="form-row"><label>Предполагаемая дата на прием *</label><input type="date" required id="app_date"></div>
+      <button type="submit" class="btn-submit">Отправить заявку</button>
+      <p style="font-size:0.75rem; margin-top: 16px;">* После отправки данные поступят в ветеринарную клинику. Нажимая кнопку "Отправить", вы соглашаетесь на обработку персональных данных.</p>
+    </form>
+  </div>
+
+  <!-- Услуги -->
+  <div class="services-section">
+    <h2 style="font-size: 2rem; color:var(--purple)">Наши услуги и цены</h2>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+
+  <!-- Специалисты -->
+  <div class="specialists">
+    <h2 style="font-size: 2rem; text-align:center;">Ведущие специалисты</h2>
+    <div class="swiper specialistSwiper" style="overflow:hidden; padding:20px 0;">
+      <div class="swiper-wrapper" id="doctorsWrapper"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+
+  <!-- Истории пациентов -->
+  <div class="stories-slider-section">
+    <h2 style="font-size: 2rem; color:var(--purple); text-align: center;">Истории наших пациентов</h2>
+    <div class="swiper storiesSwiper" style="overflow: hidden; padding: 20px 0 40px;">
+      <div class="swiper-wrapper" id="storiesSwiperWrapper"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <!-- Лицензии -->
+  <div class="licenses">
+    <h2 style="font-size: 1.8rem; text-align:center; color:var(--purple)">Лицензии и сертификаты</h2>
+    <div class="licenses-grid" id="licensesGrid"></div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2 style="font-size: 2rem; margin-bottom: 28px;">Часто задаваемые вопросы</h2>
+    <div id="faqContainer"></div>
+  </div>
+
+  <!-- Карта и контакты -->
+  <div class="map-contacts">
+    <div class="map">
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=30.302501,59.972631&z=18&pt=30.302501,59.972631&what=here%3A1" width="100%" height="100%" frameborder="0" style="border-radius:28px;"></iframe>
+    </div>
+    <div class="contacts-info">
+      <h3><i class="fas fa-map-pin"></i> Санкт-Петербург</h3>
+      <div class="contact-line"><i class="fas fa-location-dot"></i> Вяземский переулок 5-7</div>
+      <div class="contact-line"><i class="fas fa-subway"></i> м. Петроградская — 15 минут пешком</div>
+      <div class="contact-line"><i class="fas fa-car"></i> Ориентир: бизнес-центр "Вяземский"</div>
+      <div class="contact-line"><i class="fas fa-clock"></i> Режим работы: круглосуточно 24/7</div>
+      <div class="contact-line"><i class="fas fa-phone-alt"></i> Телефон: +7 (812) 777-88-99</div>
+      <div class="contact-line"><i class="fas fa-envelope"></i> Email: info@lapki.ru</div>
+    </div>
+  </div>
+</main>
+
+<!-- Модальное окно ЛК -->
+<div id="cabinetModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3 id="modalTitle" style="margin-bottom: 24px;">Вход / Регистрация</h3>
+    <form id="authForm">
+      <div class="form-group"><input type="text" id="authPhoneEmail" placeholder="Телефон или Email" required></div>
+      <div class="form-group"><input type="password" id="authPassword" placeholder="Пароль" required></div>
+      <button type="submit" class="btn-submit" id="authActionBtn">Войти</button>
+    </form>
+    <div class="switch-auth" id="switchAuthBtn" style="text-align:center; margin-top: 24px; margin-bottom: 8px; cursor:pointer; color:var(--purple); font-weight: 500;">Нет аккаунта? Зарегистрироваться</div>
+    <div id="authMessage" style="margin-top: 12px; font-size:0.8rem; text-align:center;"></div>
+  </div>
+</div>
+
+<!-- Основной скрипт -->
+<script src="js/script.js"></script>
+</body>
+</html>
